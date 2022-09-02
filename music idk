@@ -1,0 +1,56 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Script0 = Instance.new("Script")
+Script0.Name = "Background Music"
+Script0.Parent = mas
+table.insert(cors,sandbox(Script0,function()
+--[[
+fireking100489's background music script. 
+
+Find the ID of your audio, and replace "184056100" with
+"insert ID number here."
+]]
+
+
+
+
+local s = Instance.new("Sound") 
+
+s.Name = "mexico" 
+s.SoundId = "rbxassetid://9042273101" 
+s.Volume = 8 
+s.Looped = true 
+s.archivable = false 
+
+s.Parent = game.Workspace 
+
+wait(1) 
+
+s:play()
+end))
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
